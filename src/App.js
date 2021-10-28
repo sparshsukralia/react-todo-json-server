@@ -4,20 +4,16 @@ import AddItem from "./components/AddItem";
 import Items from "./components/Items";
 
 function App() {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      text: "Buy milk",
-    },
-    {
-      id: 2,
-      text: "Buy apples",
-    },
-    {
-      id: 3,
-      text: "Buy oats",
-    },
-  ]);
+  const [items, setItems] = useState([]);
+
+  // Add an item
+  const addItem = (item) => {
+    // creating a new id for the new item to add
+    const id = Math.floor(Math.random() * 10000) + 1;
+    const newItem = { id, ...item };
+    // adding the new item to the list
+    setItems([...items, newItem]);
+  };
 
   // Delete an item
   const deleteItem = (id) => {
@@ -27,8 +23,12 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <AddItem />
-      <Items items={items} onDelete={deleteItem} />
+      <AddItem onAdd={addItem} />
+      {items.length > 0 ? (
+        <Items items={items} onDelete={deleteItem} />
+      ) : (
+        "No items to show"
+      )}
     </div>
   );
 }

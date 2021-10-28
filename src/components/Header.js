@@ -5,7 +5,6 @@ const Header = () => {
   return (
     <div className="header">
       <h2>To-Do List</h2>
-      <Button />
     </div>
   );
 };
