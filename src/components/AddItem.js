@@ -5,6 +5,10 @@ const AddItem = ({ onAdd }) => {
   const [text, setText] = useState("");
   const onSubmit = (e) => {
     e.preventDefault();
+    if (!text) {
+      alert("Please enter an item");
+      return;
+    }
     onAdd({ text });
     setText("");
   };
